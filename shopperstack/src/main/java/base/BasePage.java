@@ -14,32 +14,46 @@ public class BasePage {
 		this.driver=driver;
 	}
 	
-	@FindBy(linkText = "Register")
-	private WebElement registerLink;
+	@FindBy(id = "men")
+	private WebElement menLink;
 	
-	@FindBy(linkText = "Log in")
-	private WebElement loginLink;
+	@FindBy(id = "women")
+	private WebElement womenLink;
 	
-	public WebElement getRegisterLink() {
-		return registerLink;
-	}
-
-	public WebElement getLoginLink() {
-		return loginLink;
-	}
-
-	public WebElement getShoppingCartLink() {
-		return shoppingCartLink;
-	}
-
-	public WebElement getWishlistLink() {
-		return wishlistLink;
-	}
-
-	@FindBy(linkText = "Shopping cart")
-	private WebElement shoppingCartLink;
+	@FindBy(id = "kids")
+	private WebElement kidsLink;
 	
-	@FindBy(linkText = "Wishlist")
-	private WebElement wishlistLink;
+	public WebElement getMenLink() {
+		return menLink;
+	}
+
+	public WebElement getWomenLink() {
+		return womenLink;
+	}
+
+	public WebElement getKidsLink() {
+		return kidsLink;
+	}
+
+	public WebElement getElectronicsLink() {
+		return electronicsLink;
+	}
+
+	public WebElement getBeautyLink() {
+		return beautyLink;
+	}
+
+	public WebElement getLoginButtonWelcomePage() {
+		return loginButtonWelcomePage;
+	}
+
+	@FindBy(id = "electronics")
+	private WebElement electronicsLink;
+	
+	@FindBy(id = "beautyProducts")
+	private WebElement beautyLink;
+	
+	@FindBy(id = "loginBtn")
+	private WebElement loginButtonWelcomePage;
 	
 }

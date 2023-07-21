@@ -12,40 +12,74 @@ public class HomePage extends BasePage {
 		super(driver);
 	}
 
-	@FindBy(linkText = "Log out")
-	private WebElement logoutLink;
+	@FindBy(xpath = "//button[@aria-label='Account settings']")
+	private WebElement accountSettingsButton;
+	
+	@FindBy(xpath = "//li[text()='My Profile']")
+	private WebElement myProfileButton;
+	
+	@FindBy(xpath = "//li[text()='Wish List']")
+	private WebElement wishListButton;
+	
+	@FindBy(xpath = "//li[text()='My Orders']")
+	private WebElement myOrdersButton;
+	
+	@FindBy(xpath = "//li[text()='My Wallet']")
+	private WebElement myWalletButton;
+	
+	@FindBy(xpath = "//li[text()='My Likes']")
+	private WebElement myLikesButton;
+	
+	@FindBy(xpath = "//li[text()='Logout']")
+	private WebElement logoutButton;
+	
+	@FindBy(id = "cart")
+	private WebElement cartButton;
+	
+	@FindBy(xpath = "//*[name()='svg' and @id='searchBtn']")
+	private WebElement searchButton;
+	
+	@FindBy(id = "search")
+	private WebElement searchTextField;
 
-	@FindBy(className = "account")
-	private WebElement account;
-
-	public WebElement getLogoutLink() {
-		return logoutLink;
+	public WebElement getAccountSettingsButton() {
+		return accountSettingsButton;
 	}
 
-	public WebElement getAccount() {
-		return account;
+	public WebElement getMyProfileButton() {
+		return myProfileButton;
 	}
 
-	public WebElement getBooksLink() {
-		return booksLink;
+	public WebElement getWishListButton() {
+		return wishListButton;
 	}
 
-	@FindBy(partialLinkText = "BOOKS")
-	private WebElement booksLink;
-	
-	@FindBy(partialLinkText = "COMPUTERS")
-	private WebElement computersLink;
-	
-	@FindBy(partialLinkText = "Desktops")
-	private WebElement desktopsLink;
-	
-	@FindBy(partialLinkText = "ELECTRONICS")
-	private WebElement electronicsLink;
-	
-	@FindBy(partialLinkText = "APPAREL & SHOES")
-	private WebElement apparelAndShoesLink;
-
-	public String getLoggedEmail() {
-		return account.getText();
+	public WebElement getMyOrdersButton() {
+		return myOrdersButton;
 	}
+
+	public WebElement getMyWalletButton() {
+		return myWalletButton;
+	}
+
+	public WebElement getMyLikesButton() {
+		return myLikesButton;
+	}
+
+	public WebElement getLogoutButton() {
+		return logoutButton;
+	}
+
+	public WebElement getCartButton() {
+		return cartButton;
+	}
+
+	public WebElement getSearchButton() {
+		return searchButton;
+	}
+
+	public WebElement getSearchTextField() {
+		return searchTextField;
+	}
+	
 }

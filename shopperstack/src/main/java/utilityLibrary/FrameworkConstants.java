@@ -13,5 +13,5 @@ public interface FrameworkConstants {
 	final String PROPERTYFILE_PATH="./src/test/resources/testData/configData.properties";
 	
 	final int IMPLICIT_TIMEOUT=10;
-	final int EXPLICIT_TIMEOUT=10;
+	final int EXPLICIT_TIMEOUT=50;
 }

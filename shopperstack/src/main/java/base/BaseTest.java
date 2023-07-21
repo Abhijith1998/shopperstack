@@ -7,6 +7,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Reporter;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
@@ -33,19 +35,22 @@ public class BaseTest extends InitObjects implements FrameworkConstants{
 	public String url,email,password;
 	public LoginPage login_page; 
 	public HomePage home_Page;
+	public WebDriverWait explicitWait;
 	
-	@Parameters("browserName")
+	
 	@BeforeClass(alwaysRun = true)
-	public void browserSetup(@Optional("chrome") String browserName ) {
-		if(browserName.equalsIgnoreCase("chrome")) {
+	public void browserSetup(){
+		readData=new ReadTestData();
+		String browser=readData.readDataFromPropertyFile("browser");
+		if(browser.equalsIgnoreCase("chrome")) {
 			WebDriverManager.chromedriver().setup();
 			driver=new ChromeDriver();
 			Reporter.log("Chrome browser started",true);
-		}else if(browserName.equalsIgnoreCase("firefox")) {
+		}else if(browser.equalsIgnoreCase("firefox")) {
 			WebDriverManager.firefoxdriver().setup();
 			driver=new FirefoxDriver();
 			Reporter.log("firefox browser started",true);
-		}else if(browserName.equalsIgnoreCase("edge")) {
+		}else if(browser.equalsIgnoreCase("edge")) {
 			WebDriverManager.edgedriver().setup();
 			driver=new EdgeDriver();
 			Reporter.log("MSEdge browser started",true);
@@ -58,20 +63,23 @@ public class BaseTest extends InitObjects implements FrameworkConstants{
 	
 	@BeforeMethod(alwaysRun = true)
 	public void loginToApplication() {
-		readData=new ReadTestData();
 		url=readData.readDataFromPropertyFile("url");
 		email=readData.readDataFromPropertyFile("email");
 		password=readData.readDataFromPropertyFile("password");
 		driver.get(url);
 		login_page=new LoginPage(driver);
-		login_page.getLoginLink().click();
+		explicitWait=new WebDriverWait(driver, EXPLICIT_TIMEOUT);
+		explicitWait.until(ExpectedConditions.elementToBeClickable(login_page.getLoginButtonWelcomePage()));
+		login_page.getLoginButtonWelcomePage().click();
 		login_page.login(email, password);
 		Reporter.log("succesfully logged into application",true);
 	}
 	
 	@AfterMethod(alwaysRun = true)
 	public void logoutFromApplication() {
-		home_Page.getLogoutLink().click();
+		home_Page=new HomePage(driver);
+		home_Page.getAccountSettingsButton().click();
+		home_Page.getLogoutButton().click();
 		Reporter.log("succesfully logged out",true);
 	}
 	
