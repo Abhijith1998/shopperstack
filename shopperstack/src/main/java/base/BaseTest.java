@@ -60,8 +60,8 @@ public class BaseTest extends InitObjects implements FrameworkConstants{
 	public void loginToApplication() {
 		readData=new ReadTestData();
 		url=readData.readDataFromPropertyFile("url");
-		email=readData.readStringDataFromExcel("Sheet1", 1, 0);
-		password=readData.readStringDataFromExcel("Sheet1", 1, 1);
+		email=readData.readDataFromPropertyFile("email");
+		password=readData.readDataFromPropertyFile("password");
 		driver.get(url);
 		login_page=new LoginPage(driver);
 		login_page.getLoginLink().click();
