@@ -1,8 +1,15 @@
 package utilityLibrary;
 
+import org.openqa.selenium.WebDriver;
+
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 
+/**
+ * 
+ * @author abhijith
+ *
+ */
 public class GenericLibrary {
 
 	public void selectDropdown(WebElement ele, String option) {
@@ -26,7 +33,19 @@ public class GenericLibrary {
 			}
 		}
 	}
-	public void switchToIframe() {
-		
+	public void switchToFrame(WebDriver driver,int index) {
+		driver.switchTo().frame(index);
+	}
+	
+	public void switchToFrame(WebDriver driver,String nameOrId) {
+		driver.switchTo().frame(nameOrId);
+	}
+	
+	public void switchToFrame(WebDriver driver,WebElement ele) {
+		driver.switchTo().frame(ele);
+	}
+	
+	public void switchBackToMainFrame(WebDriver driver) {
+		driver.switchTo().defaultContent();
 	}
 }
